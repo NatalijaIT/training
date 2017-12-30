@@ -1,48 +1,17 @@
-let elemPrice1 = document.getElementById("lineTotal_3");
-let price1 = elemPrice1.innerText;
-const parsePrice1 = price1.replace('UAH', '');
-const intPrice1 = parseInt(parsePrice1);
-console.log(elemPrice1);
-console.log(price1);
-console.log(parsePrice1);
-console.log(intPrice1);
-let elemPrice2 = document.getElementsByClassName("itemTotal")[0];
-let price2 = elemPrice2.innerText;
-const parsePrice2 = price2.replace('UAH', '');
-const intPrice2 = parseInt(parsePrice2);
-console.log(elemPrice2);
-console.log(price2);
-console.log(parsePrice2);
-console.log(intPrice2);
-let elemPrice3 = document.querySelector(".colTotalUpdate span:only-child");
-let price3 = elemPrice3.innerText;
-const parsePrice3 = price2.replace('UAH', '');
-const intPrice3 = parseInt(parsePrice3);
-console.log(elemPrice3);
-console.log(price3);
-console.log(parsePrice3);
-console.log(intPrice3);
-let elemPrice4 = document.querySelector("#lineTotal_3");
-let price4 = elemPrice4.innerText;
-const parsePrice4 = price2.replace('UAH', '');
-const intPrice4 = parseInt(parsePrice4);
-console.log(elemPrice4);
-console.log(price4);
-console.log(parsePrice4);
-console.log(intPrice4);
-let elemPrice5 = document.querySelector(".itemTotal");
-let price5 = elemPrice5.innerText;
-const parsePrice5 = price5.replace('UAH', '');
-const intPrice5 = parseInt(parsePrice5);
-console.log(elemPrice5);
-console.log(price5);
-console.log(parsePrice5);
-console.log(intPrice5);
-let elemPrice6 = document.querySelector("#lineTotal_3.itemTotal");
-let price6 = elemPrice6.innerText;
-const parsePrice6 = price6.replace('UAH', '');
-const intPrice6 = parseInt(parsePrice6);
-console.log(elemPrice6);
-console.log(price6);
-console.log(parsePrice6);
-console.log(intPrice6);
+function getTotalPrice1(str) {
+    if(typeof(str) === 'string') {
+        str = str.replace(',', '');
+        str = str.match('[0-9]+\.[0-9]{2}');
+        return 'Total price is: ' +str[0] + '$';
+    }
+    else return NaN;
+}
+function getTotalPrice2(str) {
+    if(typeof(str) === 'string') {
+        return 'Total price is: ' +str.replace(/[^0-9.]+/g, '') + '$';
+    }
+    else return NaN;
+}
+let price = document.querySelector("#lineTotal_3").innerText;
+console.log('First function: ' + getTotalPrice1(price));
+console.log('Second function: ' + getTotalPrice2(price));
