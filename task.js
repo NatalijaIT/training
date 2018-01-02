@@ -1,27 +1,13 @@
-function getTotalPrice1(str, regExpr) {
-    if(typeof(str) === 'string') {
-        const thousandSeparator = ',';
-        str = str.replace(thousandSeparator, '');
-        str = str.match(regExpr);
-        return 'Total price is: ' +str[0] + '$';
-    }
-    else return NaN;
+const codesObj = {};
+const listOfElements = [...document.querySelectorAll('.codes-wrapper > ul > li > span')].forEach(el => {
+    getTotalPrice(el.innerText, codesObj);
+});
+
+function getTotalPrice(str, codesObj) {
+    const originPrice = 150;
+    let code = str.match(/[A-Z]+[0-9]/g)[0];
+    let price = +str.match(/[0-9]+\$/g)[0].replace('\$', '');
+    let discount = originPrice - price;
+    codesObj[code] = discount;
 }
-function getTotalPrice2(str, regExpr) {
-    if(typeof(str) === 'string') {
-        return 'Total price is: ' +str.replace(regExpr, '') + '$';
-    }
-    else return NaN;
-}
-function getTotalPrice3(str, regExpr) {
-    if(typeof(str) === 'string') {
-        const thousandSeparator = ',';
-        str = str.replace(thousandSeparator, '');
-        return 'Total price is: ' +regExpr.exec(str)[0] + '$';
-    }
-    else return NaN;
-}
-let price = document.querySelector("#lineTotal_3").innerText;
-console.log('First function: ' + getTotalPrice1(price, '[0-9]+\.[0-9]{2}'));
-console.log('Second function: ' + getTotalPrice2(price, /[^0-9.]+/g));
-console.log('Third function: ' + getTotalPrice3(price, new RegExp('[0-9]+\.[0-9]{2}','')));
+console.log(codesObj);
