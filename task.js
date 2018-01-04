@@ -4,21 +4,20 @@ const listOfElements = [...document.querySelectorAll('.codes-wrapper ul li span'
     getTotalPrice(el.innerText, codesObj));
 
 function getTotalPrice(str, codesObj) {
-    const originPrice = document.querySelector('.total-wrapper h1 span:nth-child(2)').innerText.replace('\$', '');
-    console.log(originPrice)
-    let code = str.match("'.*'");
-    let price = +str.match(/[0-9]+\$/g)[0].replace('\$', '');
+    const originPrice = document.querySelector('.total-wrapper h1 span:nth-child(2)').innerText.replace(/\$/, '');
+    let code = str.match(/'(.*)'/)[1];
+    let price = parseFloat(str.match(/[0-9]+\.[0-9]{2}/g));
     let discount = originPrice - price;
     codesObj[code] = discount;
     return codesObj
 }
 
 function getArrayOfDiscounts(obj) {
-    let arr = [];
+    const arr = [];
     let value = 0;
     for(let key in obj) {
         value = obj[key];
-        arr.push(value)
+        arr.push(value);
     }
     return arr
 }
@@ -27,11 +26,11 @@ function getBestCodeDiscount(arr) {
     bestPriceObj = {
         bestCodeDiscount: Math.max(...arr)
     };
-    return bestPriceObj
+    return bestPriceObj;
 }
 
 function getBestCodeAccordingToDiscount(discountsObj, bestDiscount) {
-    let arrayOfBestDiscount = [];
+    const arrayOfBestDiscount = [];
     for (let key in discountsObj) {
         if (discountsObj[key] === bestDiscount.bestCodeDiscount) {
             arrayOfBestDiscount.push(key);
@@ -43,9 +42,9 @@ function getBestCodeAccordingToDiscount(discountsObj, bestDiscount) {
 }
 
 function getOriginalPrice() {
-    const originPrice = document.querySelector('.total-wrapper h1 span:nth-child(2)').innerText.replace('\$', '');
+    const originPrice = document.querySelector('.total-wrapper h1 span:nth-child(2)').innerText.replace(/\$/, '');
     return originPriceObj = {
-        originalPrice: +originPrice
+        originalPrice: parseFloat(originPrice)
     }
 }
 
