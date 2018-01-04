@@ -28,19 +28,17 @@ function getBestCodeDiscount(arr) {
         bestCodeDiscount: Math.max(...arr)
     };
     return bestPriceObj
-
 }
 
 function getBestCodeAccordingToDiscount(discountsObj, bestDiscount) {
-    let newKey = 0;
-    for (key in discountsObj) {
-        if (discountsObj[key] == bestDiscount.getBestCodeDiscount) {
-            key
-
+    let arrayOfBestDiscount = [];
+    for (let key in discountsObj) {
+        if (discountsObj[key] === bestDiscount.bestCodeDiscount) {
+            arrayOfBestDiscount.push(key);
         }
     }
     return bestCodeObj = {
-        bestCode: key.replace(/'/g, '')
+        bestCode: arrayOfBestDiscount
     }
 }
 
@@ -52,14 +50,9 @@ function getOriginalPrice() {
 }
 
 const arrayOfDiscounts = getArrayOfDiscounts(codesObj);
-console.log('arrayOfDiscounts', arrayOfDiscounts)
 const bestDiscount = getBestCodeDiscount(arrayOfDiscounts);
-console.log('bestDiscount', bestDiscount)
 const bestDiscountKey = getBestCodeAccordingToDiscount(codesObj, bestDiscount);
-console.log('bestDiscountKey', bestDiscountKey);
 const originalPrice = getOriginalPrice();
-console.log('originalPrice', originalPrice);
-console.log(codesObj);
 
 newArray.push(codesObj, bestDiscountKey, bestDiscount, originalPrice);
-console.log('newArray', newArray)
+console.log('newArray', newArray);
