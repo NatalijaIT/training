@@ -20,7 +20,7 @@ function applyCode(code) {
       newReq.send(formData);
   });
 }
-applyCode(document.querySelector('.coupon-applied span').innerText)
+applyCode("NEW2GLHT")
 .then(
   response => console.log(response),
   error => console.log('error')
