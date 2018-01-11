@@ -2,7 +2,7 @@ function applyCode(code) {
 
   return new Promise((resolve, reject) => {
 
-    const link = document.querySelector('img[id^="batBeacon0."]').src.match(/dwcont%3D([A-Z0-9]+)/)[1];
+    const link = document.querySelector('#cart-items-form').action.match(/dwcont=(.*)/)[1];
     const newReq = new XMLHttpRequest();
     const formData = new FormData();
     const url = "https://www.hottopic.com/cart?dwcont=" + link;
@@ -30,7 +30,7 @@ function removeCode(code) {
 
   return new Promise((resolve, reject) => {
 
-    const link = document.querySelector('img[id^="batBeacon0."]').src.match(/dwcont%3D([A-Z0-9]+)/)[1];
+    const link = document.querySelector('#cart-items-form').action.match(/dwcont=(.*)/)[1];
     const newReq = new XMLHttpRequest();
     const formData = new FormData();
     const url = "https://www.hottopic.com/cart?dwcont=" + link;
