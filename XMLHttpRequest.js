@@ -1,7 +1,9 @@
 function applyCode(code) {
 
   return new Promise((resolve, reject) => {
-    const link = document.querySelector('input[name = "iframe_referer"]').value.match(/dwcont=(.*)/)[1];
+
+    const link = document.querySelector('img[id^="batBeacon0."]').src.match(/dwcont%3D([A-Z0-9]+)/)[1];
+
       const newReq = new XMLHttpRequest();
       const formData = new FormData();
   const url = "https://www.hottopic.com/cart?dwcont=" + link;
@@ -14,7 +16,7 @@ function applyCode(code) {
       };
 
       newReq.onerror = function() {
-        reject(console.log('error'));
+        reject(console.log(error));
       };
 
       newReq.send(formData);
@@ -23,5 +25,5 @@ function applyCode(code) {
 applyCode("NEW2GLHT")
 .then(
   response => console.log(response),
-  error => console.log('error')
+  error => console.log(error)
 );
